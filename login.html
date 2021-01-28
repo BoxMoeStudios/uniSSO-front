@@ -31,7 +31,6 @@
         }
 
         .container .header {
-            width: 100%;
             height: 100%;
             margin: 0;
             padding: 20px 0;
@@ -63,9 +62,8 @@
             }
 
             .container .header {
-                width: 100%;
                 height: 100%;
-                padding: 30px 0 20px 20px;
+                padding: 30px 20px 20px 20px;
                 text-align: left;
             }
 
@@ -85,23 +83,22 @@
             background-color: #ededed;
             padding: 8px 0px;
             margin-top: 15px;
+            outline: none;
+            border: none;
+        }
+        
+        input {
+            box-shadow:none;
+            outline: none;
+            resize: none; 
+            border: none; 
+            -webkit-appearance: none;
         }
 
         @media all and (max-width: 601px) {
             .input {
                 width: 100%;
             }
-        }
-
-        .input-addon {
-            position: relative;
-            top: -2px;
-            float: left;
-            background-color: #ededed;
-            border: 1px solid #ededed;
-            padding: 4px 8px;
-            color: #757575;
-            border-right: 1px solid #757575;
         }
 
         input[type=checkbox] {
@@ -156,13 +153,11 @@
             <h4 class="subtitle">使用 uniAccount 登陆</h4>
             <form action="">
                 <div class="input">
-                    <div class="input-addon">
-                        <i class="material-icons">face</i>
-                    </div>
                     <input id="username" placeholder="Username" type="email" required class="validate"
                         autocomplete="off">
                 </div>
             </form>
+            <!--<div style="width: 100%;height: 50px;background-color: #ff0;"></div>-->
         </div>
     </div>
 </body>
