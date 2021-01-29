@@ -101,6 +101,15 @@
             }
         }
 
+        /* @media all and (max-width: 450px) {
+
+            .container .header {
+                height: 100%;
+                padding: 10px;
+                text-align: left;
+            }
+        } */
+
         input {
             box-shadow: none;
             outline: none;
@@ -192,14 +201,12 @@
             color: var(--color-blue-button-hover);
         }
 
-        form {
-            opacity: 1;
+        form#sign-form {
+            opacity: 0;
             transition: opacity .3s ease-in-out;
             margin-top: 48px;
-        }
-
-        form.invisible {
-            opacity: 0;
+            animation: .3s fade-in ease-in-out forwards;
+            animation-delay: .4s;
         }
 
         @media all and (max-width: 601px) {
@@ -219,8 +226,60 @@
                 height: 48px;
             }
 
-            form {
+            form#sign-form {
+                opacity: 1;
                 margin-top: auto;
+                animation: none;
+            }
+        }
+
+        span.swift {
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+            top: .8rem;
+            animation: .3s swift-up ease-in-out forwards;
+        }
+
+        span.swift::before {
+            display: block;
+            height: 100%;
+        }
+
+        span.swift i {
+            font-style: normal;
+            position: relative;
+            top: 2.2rem;
+            animation: .5s swift-up ease-in-out forwards;
+            animation-delay: calc(var(--swift-index, 0) * .1s);
+        }
+
+
+        @media all and (max-width: 601px) {
+
+            span.swift,
+            span.swift::before,
+            span.swift i {
+                top: auto;
+                left: auto;
+            }
+        }
+
+        @keyframes swift-up {
+            to {
+                top: 0rem;
+            }
+        }
+
+        @keyframes swift-left {
+            to {
+                left: 0rem;
+            }
+        }
+
+        @keyframes fade-in {
+            to {
+                opacity: 1;
             }
         }
     </style>
@@ -229,9 +288,13 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">登陆</h1>
-            <h4 class="subtitle">使用 uniAccount 登陆</h4>
-            <form class="invisible1" action="">
+            <h1 class="title">
+                <span class="swift"><i style="--swift-index: 0;">登陆</i></span>
+            </h1>
+            <h4 class="subtitle">
+                <span class="swift"><i style="--swift-index: 1;">使用 uniAccount 登陆</i></span>
+            </h4>
+            <form id="sign-form" action="">
                 <div class="input">
                     <input id="username" placeholder="Username" type="email" required class="validate"
                         autocomplete="off">
@@ -244,7 +307,7 @@
                     <a href="#">我忘记了账户密码</a>
                 </div>
                 <div class="action">
-                    <button type="submit">登陆</button>
+                    <button type="submit">继续登陆</button>
                     <button type="button" class="secondary" id="register">创建账号</button>
                 </div>
             </form>
