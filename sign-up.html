@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up - uniSSO</title>
+    <style>
+        :root {
+            --color-blue-button: #1a73e8;
+            --color-blue-button-hover: #174ea6;
+            --border-radius-global: 8px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            text-rendering: optimizeLegibility !important;
+            -webkit-font-smoothing: antialiased !important;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        a {
+            color: #1a73e8;
+            display: inline-block;
+            font-weight: 500;
+            letter-spacing: .25px;
+            outline: 0;
+            position: relative;
+            background-color: transparent;
+            cursor: pointer;
+            font-size: 15px;
+            padding: 0;
+            text-align: left;
+            border: 0;
+            text-decoration: none;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            overflow: hidden;
+            width: 450px;
+            min-height: 500px;
+            border-radius: var(--border-radius-global);
+            border: 1px solid #dadce0;
+            /* box-shadow: 0 3px 10px rgba(0, 0, 0, .25); */
+        }
+
+        .container .header {
+            height: 100%;
+            margin: 0;
+            padding: 20px 0;
+            text-align: center;
+            transition: all 150ms ease-in-out;
+        }
+
+        .container h1,
+        .container h4 {
+            color: #202124;
+            margin: 0;
+        }
+
+        .container .header h1.title {
+            font-weight: normal;
+            font-size: 1.8rem;
+        }
+
+        .container .header h4.subtitle {
+            font-weight: normal;
+            font-size: 1rem;
+            margin: 5px 0 0;
+        }
+
+        @media all and (max-width: 601px) {
+            .container {
+                border-radius: 0;
+                min-height: 100vh;
+                border: none;
+            }
+
+            .container .header {
+                height: 100%;
+                padding: 30px 20px 20px 20px;
+                text-align: left;
+            }
+
+            .container .header h1.title {
+                font-size: 2rem;
+            }
+
+            .container .header h4.subtitle {
+                margin: 10px 0 0;
+            }
+        }
+
+        /* @media all and (max-width: 450px) {
+
+            .container .header {
+                height: 100%;
+                padding: 10px;
+                text-align: left;
+            }
+        } */
+
+        input {
+            box-shadow: none;
+            outline: none;
+            resize: none;
+            border: none;
+            -webkit-appearance: none;
+            background-color: transparent;
+        }
+
+        input[type=email],
+        input[type=password] {
+            width: 100%;
+            color: #202124;
+            font-size: 17px;
+            height: 28px;
+            margin: 1px 1px 0 1px;
+            padding: 13px 15px;
+            border-radius: var(--border-radius-global);
+        }
+
+        input[type=email]:focus,
+        input[type=password]:focus {
+            margin: 1px 2px 0 2px;
+            padding: 12px 14px;
+        }
+
+        .input {
+            display: flex;
+            margin: 15px auto auto;
+            width: 80%;
+            border-radius: var(--border-radius-global);
+            background-color: transparent;
+            overflow: hidden;
+            border: 1px solid #dadce0;
+            /* transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1); */
+        }
+
+        .input.focus {
+            border: 2px var(--color-blue-button) solid;
+        }
+
+        .tips {
+            display: flex;
+            justify-content: end;
+            width: 80%;
+            margin: 15px auto auto;
+        }
+
+        .action {
+            display: flex;
+            justify-content: space-between;
+            margin: 26px auto auto;
+            width: 80%;
+        }
+
+        .action button {
+            border: none;
+            outline: none;
+            min-width: 64px;
+            height: 36px;
+            margin: 6px 0;
+            padding: 0 24px 0 24px;
+            font-size: .875rem;
+            font-weight: 500;
+            color: #fff;
+            background-color: var(--color-blue-button);
+            border-radius: 4px;
+            cursor: pointer;
+            transition:
+                box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1),
+                background-color 280ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .action button:hover {
+            box-shadow: 0 1px 2px 0 var(--gm-fillbutton-keyshadow-color, rgba(60, 64, 67, 0.3)), 0 1px 3px 1px var(--gm-fillbutton-ambientshadow-color, rgba(60, 64, 67, 0.15));
+            background-color: var(--color-blue-button-hover);
+        }
+
+        .action button.secondary {
+            box-shadow: none;
+            color: var(--color-blue-button);
+            padding: 0 8px 0 8px;
+            background-color: transparent;
+            float: right;
+        }
+
+        .action button.secondary:hover {
+            background-color: rgb(246, 250, 254);
+            color: var(--color-blue-button-hover);
+        }
+
+        form#sign-form {
+            opacity: 0;
+            transition: opacity .3s ease-in-out;
+            margin-top: 48px;
+            animation: .3s fade-in ease-in-out forwards;
+            animation-delay: .4s;
+        }
+
+        @media all and (max-width: 601px) {
+
+            .input,
+            .tips,
+            .action {
+                width: 100%;
+            }
+
+            .action {
+                justify-content: start;
+                flex-direction: column;
+            }
+
+            .action button {
+                height: 48px;
+            }
+
+            form#sign-form {
+                opacity: 1;
+                margin-top: auto;
+                animation: none;
+            }
+        }
+
+        span.swift {
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+            top: .8rem;
+            animation: .3s swift-up ease-in-out forwards;
+        }
+
+        span.swift::before {
+            display: block;
+            height: 100%;
+        }
+
+        span.swift i {
+            font-style: normal;
+            position: relative;
+            top: 2.2rem;
+            animation: .5s swift-up ease-in-out forwards;
+            animation-delay: calc(var(--swift-index, 0) * .1s);
+        }
+
+
+        @media all and (max-width: 601px) {
+
+            span.swift,
+            span.swift::before,
+            span.swift i {
+                top: auto;
+                left: auto;
+            }
+        }
+
+        @keyframes swift-up {
+            to {
+                top: 0rem;
+            }
+        }
+
+        @keyframes swift-left {
+            to {
+                left: 0rem;
+            }
+        }
+
+        @keyframes fade-in {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">
+                <span class="swift"><i style="--swift-index: 0;">注册</i></span>
+            </h1>
+            <h4 class="subtitle">
+                <span class="swift"><i style="--swift-index: 1;">注册一个 uniAccount 账户</i></span>
+            </h4>
+            <form id="sign-form" action="">
+                <div class="input">
+                    <input id="username" placeholder="Username" type="email" required class="validate"
+                        autocomplete="off">
+                </div>
+                <div class="input">
+                    <input id="password" placeholder="Password" type="password" required class="validate"
+                        autocomplete="off">
+                </div>
+                <div class="tips">
+                    <a href="#">我忘记了账户密码</a>
+                </div>
+                <div class="action">
+                    <button type="submit">继续登陆</button>
+                    <button type="button" class="secondary" id="register">创建账号</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const elem_input = document.querySelectorAll('input');
+
+        elem_input.forEach(elem => {
+            elem.onfocus = function () {
+                this.parentNode.classList.add('focus');
+            }
+            elem.onblur = function () {
+                this.parentNode.classList.remove('focus');
+            }
+        });
+
+        document.querySelector('button#register').addEventListener('click', () => {
+            window.location.href = '/sign-up';
+        });
+    </script>
+</body>
+
+</html>
